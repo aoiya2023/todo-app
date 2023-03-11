@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Content.css';
 import Tab from './Tab.js';
 import { useState } from 'react';
 import Stack from '@mui/material/Stack';

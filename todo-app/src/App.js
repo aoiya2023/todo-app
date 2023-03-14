@@ -3,7 +3,8 @@ import Content from './component/Content.js';
 import Pomodoro from './component/Pomodoro.js';
 import { useEffect, useState } from 'react';
 
-function tick(secs) {
+// calculate the time left for the timer
+function calculateTimeLeft(secs) {
     let timeLeft = {};
     if (secs > 0) {
         timeLeft = {
@@ -11,13 +12,25 @@ function tick(secs) {
             seconds: Math.floor((secs / 1000) % 60)
         }
     }
-    console.log(timeLeft);
     return timeLeft;
 }
 
 
 function App() {
-  const [timeLeft, setTimeLeft] = useState(tick(60*1000));
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(2*60*1000));
+  const [timerOn, setTimerOn] = useState(false);
+
+  // start & pause timer
+  function toggleTimer() {
+    if (timerOn) {
+      setTimerOn(false);
+    }
+    else {
+      setTimerOn(true);
+    }
+    
+  }
+  
   let timeInSecs = 0;
   Object.keys(timeLeft).forEach((interval) => {
       if (!timeLeft[interval]) {
@@ -32,7 +45,12 @@ function App() {
   // update the amount of time remaining
   useEffect(() => {
       const timer = setTimeout(() => {
-          setTimeLeft(tick(timeInSecs-1));
+          if (timerOn === true) {
+            setTimeLeft(calculateTimeLeft(timeInSecs-1));
+          }
+          else {
+            setTimeLeft(calculateTimeLeft(timeInSecs));
+          }
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -41,7 +59,7 @@ function App() {
   return (
     <Content>
       <div key="Task">Hello, world!</div>
-      <div key="Pomodoro"><Pomodoro timeLeft={timeLeft}/></div>
+      <div key="Pomodoro"><Pomodoro timeLeft={timeLeft} toggleTimer={toggleTimer} timerOn={timerOn}/></div>
     </Content>
   );
 }

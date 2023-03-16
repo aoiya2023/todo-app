@@ -35,7 +35,7 @@ export function Timer(props) {
 
     return (
         <div>
-            {timerComponents}
+            <div>{timerComponents}</div>
             <Button onClick={()=> props.toggleTimer()}>{props.timerOn ? <PauseCircleIcon/> : <PlayCircleFilledIcon/>}</Button>
             <Button onClick={()=> props.skipTimer()}><SkipNextOutlinedIcon/></Button>
         </div>

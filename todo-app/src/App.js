@@ -1,6 +1,7 @@
 import './App.css';
 import Content from './component/Content.js';
 import Pomodoro from './component/Pomodoro.js';
+import TaskList from './component/TaskList';
 import { useEffect, useState } from 'react';
 
 let pomodoroTime = 2 * 60 * 1000;
@@ -19,10 +20,16 @@ function calculateTimeLeft(secs) {
 }
 
 
-function App() {
+function App(props) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(pomodoroTime));
   const [timerOn, setTimerOn] = useState(false);
-  const [pomodoroOn, setPomodoroOn] = useState(true); 
+  const [pomodoroOn, setPomodoroOn] = useState(true);
+  const [taskList, setTaskList] = useState(props.initialData);
+  
+  // add task
+  function addTask(e) {
+    console.log("add task");
+  }
   
   // start & pause timer
   function toggleTimer() {
@@ -86,7 +93,10 @@ function App() {
 
   return (
     <Content>
-      <div key="Task">Hello, world!</div>
+      <div key="Task">
+        <TaskList taskList={taskList}/>
+        
+      </div>
       <div key="Pomodoro"><Pomodoro timeLeft={timeLeft} toggleTimer={toggleTimer} skipTimer={skipTimer} timerOn={timerOn}/></div>
     </Content>
   );

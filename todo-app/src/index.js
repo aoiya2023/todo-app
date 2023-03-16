@@ -4,10 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const initialData = [
+  {
+    id: 1,
+    text: "Take out the trash" 
+  },
+  {
+    id: 2,
+    text: "Go grocery shopping"
+  }
+]
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App initialData={initialData}/>
   </React.StrictMode>
 );
 

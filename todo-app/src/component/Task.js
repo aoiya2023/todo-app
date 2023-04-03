@@ -9,7 +9,7 @@ export default function Task(props) {
         <ListItem>
             <ListItemButton>
                 <ListItemText primary={props.task.text} secondary={props.task.status}/>
-                <DropdownMenu task={props.task} statusList={props.statusList}/>
+                <DropdownMenu task={props.task} statusList={props.statusList} key={props.task.id}/>
             </ListItemButton>
         </ListItem>
     )

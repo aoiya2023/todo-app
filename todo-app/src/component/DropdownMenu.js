@@ -11,8 +11,10 @@ export default function DropdownMenu(props) {
     function handleOnClick(event) {
         setAnchorEl(event.currentTarget);
     }
-    function handleClose() {
+    function handleClose(e, status) {
+        console.log(status);
         setAnchorEl(null);
+        props.task.status = status;
     }
     return (
         <div>
@@ -33,7 +35,7 @@ export default function DropdownMenu(props) {
             >
                 {props.statusList.filter((status) => status !== props.task.status)
                 .map((status) => (
-                    <MenuItem onClick={handleClose}>{status}</MenuItem>
+                    <MenuItem key={status + toString(props.task.id)} onClick={(e) => handleClose(e, status)}>{status}</MenuItem>
                 ))}
             </Menu>
 

@@ -94,8 +94,7 @@ function App(props) {
   return (
     <Content>
       <div key="Task">
-        <TaskList taskList={taskList}/>
-        
+        <TaskList taskList={taskList} statusList={props.statusList}/>
       </div>
       <div key="Pomodoro"><Pomodoro timeLeft={timeLeft} toggleTimer={toggleTimer} skipTimer={skipTimer} timerOn={timerOn}/></div>
     </Content>

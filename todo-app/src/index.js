@@ -7,17 +7,35 @@ import reportWebVitals from './reportWebVitals';
 const initialData = [
   {
     id: 1,
-    text: "Take out the trash" 
+    text: "Take out the trash",
+    status: "Backlog" 
   },
   {
     id: 2,
-    text: "Go grocery shopping"
-  }
+    text: "Go grocery shopping",
+    status: "To Do"
+  },
+  {
+    id: 3,
+    text: "Display tasks by their status",
+    status: "In Process"
+  },
+  {
+    id: 4,
+    text: "Complete the project update for CS181",
+    status: "Review"
+  },
+  {
+    id: 5,
+    text: "Read BGP partial deployment paper",
+    status: "Done"
+  },
 ]
+const statusList = ["Backlog", "To Do", "In Process", "Review", "Done"]
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App initialData={initialData}/>
+    <App initialData={initialData} statusList={statusList}/>
   </React.StrictMode>
 );
 

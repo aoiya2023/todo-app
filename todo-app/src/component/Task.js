@@ -2,12 +2,14 @@ import './Task.css';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import DropdownMenu from './DropdownMenu';
 
 export default function Task(props) {
     return (
         <ListItem>
             <ListItemButton>
-                <ListItemText primary={props.task.text}/>
+                <ListItemText primary={props.task.text} secondary={props.task.status}/>
+                <DropdownMenu task={props.task} statusList={props.statusList}/>
             </ListItemButton>
         </ListItem>
     )

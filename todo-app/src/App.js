@@ -2,7 +2,9 @@ import './App.css';
 import Content from './component/Content.js';
 import Pomodoro from './component/Pomodoro.js';
 import TaskList from './component/TaskList';
+import AddButton from './component/AddButton';
 import { useEffect, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 let pomodoroTime = 2 * 60 * 1000;
 let restTime = 1 * 60 * 1000;
@@ -27,8 +29,14 @@ function App(props) {
   const [taskList, setTaskList] = useState(props.initialData);
   
   // add task
-  function addTask(e) {
-    console.log("add task");
+  function addTask(taskName, status) {
+    const uniqueId = uuid();
+    let task = {
+      id: uniqueId,
+      text: taskName,
+      status: status
+    }
+    setTaskList([...taskList, task]);
   }
   
   // start & pause timer
@@ -95,6 +103,7 @@ function App(props) {
     <Content>
       <div key="Task">
         <TaskList taskList={taskList} statusList={props.statusList}/>
+        <AddButton addTask={addTask}/>
       </div>
       <div key="Pomodoro"><Pomodoro timeLeft={timeLeft} toggleTimer={toggleTimer} skipTimer={skipTimer} timerOn={timerOn}/></div>
     </Content>
